@@ -2,6 +2,7 @@ package com.tanya.config;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 
 import com.tanya.model.Authority;
 import com.tanya.model.MUser;
@@ -34,7 +34,7 @@ public class EazyBankUsernamePwdAuthenticationProvider implements Authentication
         String username = authentication.getName();
         String pwd = authentication.getCredentials().toString();
         MUser user = mUserRepository.findByEmail(username);
-        if (StringUtils.hasText(user.getEmail())) {
+        if (!Objects.isNull(user)) {
             if (passwordEncoder.matches(pwd, user.getPwd())) {
                 return new UsernamePasswordAuthenticationToken(username, pwd, getGrantedAuthorities(user.getAuthorities()));
             } else {

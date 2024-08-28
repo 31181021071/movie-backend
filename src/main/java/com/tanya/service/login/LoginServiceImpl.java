@@ -31,6 +31,7 @@ public class LoginServiceImpl implements LoginService {
 		String hashPwd = passwordEncoder.encode(mUser.getPwd());
 		mUser.setPwd(hashPwd);
 		mUser.setRole("user");
+		mUser.setName(mUser.getEmail());
 		mUser.setCreateDt(LocalDateTime.now());
 		mUser.setCreateBy(ApplicationConstants.ADMINISTRATOR);
 		mUser.setUpdateDt(LocalDateTime.now());
@@ -39,7 +40,7 @@ public class LoginServiceImpl implements LoginService {
 		
 		Authority authority = new Authority();
 		authority.setUser(newUser);
-		authority.setName(ApplicationConstants.ROLE_ADMIN);
+		authority.setName(ApplicationConstants.ROLE_USER);
 		authorityReposity.save(authority);
 		
 	}

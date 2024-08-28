@@ -18,8 +18,11 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import javax.crypto.SecretKey;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 
 public class JWTTokenValidatorFilter  extends OncePerRequestFilter {
+	
+	private final static String[] NOT_FILTER_REQUEST = {"/user","/register"};
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
@@ -50,7 +53,7 @@ public class JWTTokenValidatorFilter  extends OncePerRequestFilter {
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
-        return request.getServletPath().equals("/user");
+        return Arrays.asList(NOT_FILTER_REQUEST).contains(request.getServletPath());
     }
 
 }

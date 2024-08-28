@@ -10,6 +10,6 @@ import com.tanya.model.Loans;
 @Repository
 public interface LoanRepository extends CrudRepository<Loans, Integer> {
 	
-	List<Loans> findByCustomerIdOrderByStartDtDesc(int customerId);
+	List<Loans> findByUserIdOrderByStartDtDesc(int customerId);
 
 }
