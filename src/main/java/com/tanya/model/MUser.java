@@ -30,6 +30,8 @@ public class MUser extends CommonModel {
     private String pwd;
 
     private String role;
+    
+    private boolean isEnable;
 
     @JsonIgnore
     @OneToMany(mappedBy="user",fetch=FetchType.EAGER)

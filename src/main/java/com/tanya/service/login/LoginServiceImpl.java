@@ -32,6 +32,7 @@ public class LoginServiceImpl implements LoginService {
 		mUser.setPwd(hashPwd);
 		mUser.setRole("user");
 		mUser.setName(mUser.getEmail());
+		mUser.setEnable(ApplicationConstants.USER_ENABLE);
 		mUser.setCreateDt(LocalDateTime.now());
 		mUser.setCreateBy(ApplicationConstants.ADMINISTRATOR);
 		mUser.setUpdateDt(LocalDateTime.now());
